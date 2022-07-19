@@ -1,0 +1,18 @@
+<mat-tab-group>
+  <mat-tab label="Incomes">
+    <div class="w-100 p-5 d-flex align-items-center flex-wrap gap-3">
+        <app-add-btn (clicked)="addCategory(budgetType.INCOME)"></app-add-btn>
+        <div *ngFor="let item of income$ | async">
+          <app-category-card [category]="item"></app-category-card>
+        </div>
+      </div>
+  </mat-tab>
+  <mat-tab label="Expenses">
+    <div class="w-100 p-5 d-flex align-items-center flex-wrap gap-3">
+        <app-add-btn (clicked)="addCategory(budgetType.EXPENSE)"></app-add-btn>
+        <div *ngFor="let item of expense$ | async">
+          <app-category-card [category]="item"></app-category-card>
+        </div>
+      </div>
+  </mat-tab>
+</mat-tab-group>

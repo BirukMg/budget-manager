@@ -1,0 +1,29 @@
+<div class="income-form w-100">
+  <div class="income-form__header d-flex justify-content-between mb-3">
+    <h3 class="fw-bold">Add new Bank</h3>
+    <button (click)="dialogRef.close()" class="pure-btn" type="button">
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" [style.width.%]="100">
+      <mat-label>Name</mat-label>
+      <input matInput name="name" required formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" [style.width.%]="100">
+      <mat-label>Amount</mat-label>
+      <input
+        matInput
+        type="number"
+        [min]="1"
+        name="amount"
+        required
+        formControlName="balance"
+      />
+    </mat-form-field>
+    <div *ngIf="{creating: creating$ | async, updating: updating$| async} as observable">
+      <button *ngIf="!observable.creating && !observable.updating" mat-raised-button color="accent" type="submit">{{data ? 'Save changes' : 'Submit'}}</button>
+      <mat-spinner *ngIf="observable.creating || observable.updating" diameter="20"></mat-spinner>
+    </div>
+  </form>
+</div>

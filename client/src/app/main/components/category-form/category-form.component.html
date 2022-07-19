@@ -1,0 +1,26 @@
+<div class="category-form w-100">
+  <div class="income-form__header d-flex justify-content-between mb-3">
+    <h3 class="fw-bold">Add new {{ data.type }} category</h3>
+    <button (click)="dialogRef.close()" class="pure-btn" type="button">
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" [style.width.%]="100">
+      <mat-label>Name</mat-label>
+      <input matInput name="name" required formControlName="name" />
+    </mat-form-field>
+    <div class="d-flex flex-wrap gap-2 w-100 mb-3">
+      <button
+        class="pure-btn"
+        type="button"
+        *ngFor="let icon of icons"
+        (click)="selectIcon(icon)"
+        [ngClass]="{ selected: icon === selectedIcon }"
+      >
+        <i [class]="icon"></i>
+      </button>
+    </div>
+    <button mat-raised-button color="accent" type="submit">Submit</button>
+  </form>
+</div>

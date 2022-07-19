@@ -1,0 +1,6 @@
+<div class="w-100 p-5 d-flex flex-wrap gap-3">
+    <app-add-btn (clicked)="addIncome()"></app-add-btn>
+    <div *ngFor="let item of budgets$ | async">
+        <app-budget-item-card [isIncome]="true" [budget]="item"></app-budget-item-card>
+    </div>
+</div>

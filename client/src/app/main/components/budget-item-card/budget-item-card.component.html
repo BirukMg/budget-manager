@@ -1,0 +1,33 @@
+<div class="budget-item m-3 position-relative" [matTooltip]="budget.remark" (click)="updateBudget()">
+  <div
+    class="budget-item__header w-100 d-flex py-1 px-2 justify-content-between fw-bold text-white"
+    [ngClass]="{ 'bg-success': isIncome, 'bg-warning': !isIncome }"
+  >
+    <small>{{budget.created_at | custom_date}}</small>
+    <small>{{ isIncome ? "To" : "From" }}: {{budget?.bank?.name}}</small>
+  </div>
+
+  <div
+    class="budeget-item__body w-100 px-3 py-2 d-flex justify-content-between"
+  >
+    <div class="budeget__detail d-flex align-items-center gap-2">
+      <div class="budeget-item__icon">
+        <i
+          [class]="budget?.category?.icon +' fa-2x'"
+          aria-hidden="true"
+        >
+        </i>
+      </div>
+      <div>
+        <h3 class="fw-bold">{{budget?.category?.name}}</h3>
+        <p class="budget-item__remark">{{budget?.remark}}</p>
+      </div>
+    </div>
+    <div class="budeget__amount">
+      <h3>{{ isIncome ? "+" : "-" }}{{budget?.amount}}</h3>
+    </div>
+  </div>
+  <div class="position-absolute" style="bottom: 2px; right: 5px;">
+    <button class="text-danger fw-bold pure-btn" (click)="deleteB($event)">Remove</button>
+  </div>
+</div>

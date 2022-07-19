@@ -1,0 +1,10 @@
+<div class="category-item d-flex gap-2 align-items-center justify-content-between p-3 m-3">
+    <div class="d-flex align-items-center">
+        <i [class]="category.icon + ' fa-2x'"></i>
+        <h3>{{category.name}}</h3>
+    </div>
+
+    <button class="pure-btn" (click)="deleteC()">
+        <i class="fa fa-close text-danger"></i>
+    </button>
+</div>

@@ -1,0 +1,6 @@
+<div class="w-100 p-5 d-flex flex-wrap gap-3">
+    <app-add-btn (clicked)="addBank()"></app-add-btn>
+    <div *ngFor="let item of banks$ | async">
+        <app-bank-item-card [bank]="item"></app-bank-item-card>
+    </div>
+</div>

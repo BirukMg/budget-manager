@@ -1,0 +1,41 @@
+<div class="nav-bar w-100 d-flex flex-wrap justify-content-center gap-5 py-3 position-sticky">
+  <div class="nav-bar__item">
+    <a
+      class="nav-bar__link"
+      [routerLink]="'/'"
+      [routerLinkActiveOptions]="{ exact: true }"
+      [routerLinkActive]="'nav-bar--active'"
+    >
+      Dashboard
+      <div></div>
+    </a>
+  </div>
+  <div class="nav-bar__item">
+    <a
+      class="nav-bar__link"
+      [routerLinkActive]="'nav-bar--active'"
+      [routerLink]="'banks'"
+    >
+      Banks
+      <div></div>
+    </a>
+  </div>
+  <div class="nav-bar__item">
+    <a
+      class="nav-bar__link"
+      [routerLinkActive]="'nav-bar--active'"
+      [routerLink]="'/categories'"
+      >Categories
+      <div></div
+    ></a>
+  </div>
+  <div class="nav-bar__item">
+    <a
+      class="nav-bar__link"
+      [routerLinkActive]="'nav-bar--active'"
+      [routerLink]="'/profile'"
+      >Profile
+      <div></div
+    ></a>
+  </div>
+</div>

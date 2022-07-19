@@ -1,0 +1,87 @@
+<div class="income-form w-100">
+  <div class="income-form__header d-flex justify-content-between mb-3">
+    <h3 class="fw-bold">Add new {{ data.type }}</h3>
+    <button (click)="dialogRef.close()" class="pure-btn" type="button">
+      <i class="fa fa-close"></i>
+    </button>
+  </div>
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="outline" [style.width.%]="100">
+      <mat-label>Category</mat-label>
+      <mat-select name="category" formControlName="category">
+        <mat-option
+          *ngFor="let item of categories$ | async"
+          [value]="item.id"
+          >{{ item.name }}</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+    <div class="d-flex gap-3" style="width: 100%">
+      <mat-form-field appearance="outline" [style.width.%]="50">
+        <mat-label>Bank</mat-label>
+        <mat-select
+          name="bank"
+          formControlName="bank"
+          (valueChange)="selectChange($event)"
+        >
+          <mat-option *ngFor="let item of banks$ | async" [value]="item.id">{{
+            item.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="outline" [style.width.%]="100">
+        <mat-label
+          >Amount
+          <span *ngIf="selectedBank"
+          [ngClass]="{'text-danger': !isInsufficient}"
+            >(available balance {{ selectedBank.balance }})</span
+          ></mat-label
+        >
+        <input
+          matInput
+          type="number"
+          [min]="1"
+          name="amount"
+          required
+          formControlName="amount"
+        />
+      </mat-form-field>
+    </div>
+    <mat-form-field appearance="outline" [style.width.%]="100">
+      <mat-label>Remark</mat-label>
+      <textarea
+        matInput
+        name="remark"
+        formControlName="remark"
+        maxlength="255"
+      ></textarea>
+    </mat-form-field>
+    <div class="mb-1" *ngIf="!isInsufficient">
+      <small class="text-danger fw-bold">Selected Bank has no sufficient balance</small>
+    </div>
+    <!-- <div *ngIf="{bank :selectedBank$ | async} as observable">
+      {{observable.bank?.balance}}
+    </div> -->
+    <div *ngIf="isInsufficient">
+      <div
+        *ngIf="{
+          creating: creating$ | async,
+          updating: updating$ | async
+        } as observable"
+      >
+        <button
+          mat-raised-button
+          color="accent"
+          type="submit"
+          *ngIf="!observable.creating && !observable.updating"
+        >
+          {{ data.data ? "Save changes" : "Submit" }}
+        </button>
+        <mat-spinner
+          *ngIf="observable.creating || observable.updating"
+          diameter="20"
+        ></mat-spinner>
+      </div>
+    </div>
+  </form>
+</div>
